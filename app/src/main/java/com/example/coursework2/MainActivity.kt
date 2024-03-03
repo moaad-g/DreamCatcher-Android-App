@@ -7,7 +7,7 @@ import android.view.Menu
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.add_previous_night)
+        setContentView(R.layout.landing_page)
         setSupportActionBar(findViewById(R.id.app_bar))
     }
 
