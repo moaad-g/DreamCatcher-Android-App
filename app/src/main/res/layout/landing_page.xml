@@ -11,24 +11,13 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_primary"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/app_bar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/dreamcatcher"
-        android:textColor="@color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="@+id/app_bar"
-        app:layout_constraintStart_toStartOf="@+id/app_bar"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <Button
         android:id="@+id/new_entry"
@@ -54,12 +43,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="241dp"
-        android:layout_height="187dp"
-        android:layout_marginBottom="380dp"
+        android:layout_width="282dp"
+        android:layout_height="258dp"
+        android:layout_marginBottom="288dp"
+        android:rotation="49"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/baseline_brightness_3_24" />
 
