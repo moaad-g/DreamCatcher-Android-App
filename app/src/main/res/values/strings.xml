@@ -12,5 +12,6 @@
     <string name="how_long_did_you_sleep_for">How long did you sleep for?</string>
     <string name="save">Save</string>
     <string name="error">error</string>
+    <string name="sleep_history">Sleep History</string>
 
 </resources>

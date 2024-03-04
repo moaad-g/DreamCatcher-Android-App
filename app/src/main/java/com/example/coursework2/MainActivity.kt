@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,19 +33,18 @@ class MainActivity : AppCompatActivity() {
     private fun populaterecyclelist(): ArrayList<SleepModel> {
         val list = ArrayList<SleepModel>()
 
-        val dreamImgList = arrayOf(R.drawable.green_smile , R.drawable.green_smile , R.drawable.red_smile,
-            R.drawable.green_smile, R.drawable.red_smile ,R.drawable.red_smile , R.drawable.red_smile
+        val dreamImgList = arrayOf(R.drawable.green_smile , R.drawable.red_smile,
+            R.drawable.orange_smile
         )
-        val lenImgList = arrayOf(R.drawable.green_smile , R.drawable.green_smile , R.drawable.red_smile,
-            R.drawable.green_smile, R.drawable.red_smile ,R.drawable.red_smile , R.drawable.red_smile
+        val lenImgList = arrayOf(R.drawable.time_green , R.drawable.time_orange , R.drawable.time_red
         )
-        val descList = arrayOf("beans","beaaans")
+        val descList = arrayOf("This day you slept for "+Random.nextInt(0,8)+" hours and had a good dream","This day you slept for "+Random.nextInt(0,8)+" hours and had a bad dream")
 
-        for (i in 0 ..6){
+        for (i in 0 ..15){
             val newSleep = SleepModel()
-            newSleep.sleepDesc = descList[0]
-            newSleep.dreamImg = dreamImgList[i]
-            newSleep.lengthImg = lenImgList[i]
+            newSleep.sleepDesc = descList[Random.nextInt(0,2)]
+            newSleep.dreamImg = dreamImgList[Random.nextInt(0,3)]
+            newSleep.lengthImg = lenImgList[Random.nextInt(0,3)]
             list.add(newSleep)
 
         }
