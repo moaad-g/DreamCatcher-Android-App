@@ -16,4 +16,8 @@ class LandingPage : AppCompatActivity() {
         val newIntent = Intent(this,SleepHistory::class.java);
         startActivity(newIntent);
     }
+    fun toNewChunk(view : View){
+        val newIntent = Intent(this,AddSleep::class.java);
+        startActivity(newIntent);
+    }
 }

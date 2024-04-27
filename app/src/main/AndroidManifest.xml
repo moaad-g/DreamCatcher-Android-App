@@ -16,6 +16,10 @@
             android:exported="false"
             android:label="SleepHistory"
             android:parentActivityName=".LandingPage"/>
+        <activity android:name=".AddSleep"
+            android:exported="false"
+            android:label="AddSleep"
+            android:parentActivityName=".LandingPage"/>
         <activity
             android:name=".LandingPage"
             android:exported="true">
@@ -26,5 +30,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
