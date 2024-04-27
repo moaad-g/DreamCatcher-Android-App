@@ -5,28 +5,26 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.coursework2.db.ChunkDatabase
 import kotlin.random.Random
 
 class SleepHistory : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sleep_history)
-        setSupportActionBar(findViewById(R.id.app_bar))
+        val db = ChunkDatabase(this);
+        val sleepList = db.readChunks()
 
-        val sleepList = populaterecyclelist()
+
+        print(sleepList)
         val recyclerView = findViewById<RecyclerView>(R.id.sleep_recycler)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
+
         val adapter = SleepListAdapter(sleepList)
         recyclerView.adapter = adapter
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.toolbar_menu, menu)
-        return true
     }
 
 
@@ -42,7 +40,7 @@ class SleepHistory : AppCompatActivity() {
 
         for (i in 0 ..15){
             val newSleep = SleepModel()
-            newSleep.sleepDesc = descList[Random.nextInt(0,2)]
+            newSleep.dreamtext = descList[Random.nextInt(0,2)]
             newSleep.dreamImg = dreamImgList[Random.nextInt(0,3)]
             newSleep.lengthImg = lenImgList[Random.nextInt(0,3)]
             list.add(newSleep)

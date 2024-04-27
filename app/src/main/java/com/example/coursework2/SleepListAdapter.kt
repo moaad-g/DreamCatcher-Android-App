@@ -29,7 +29,7 @@ class SleepListAdapter (private val sleepList: MutableList<SleepModel>) : Recycl
 
         holder.lenView.setImageResource(item.lengthImg)
         holder.dreamView.setImageResource(item.dreamImg)
-        holder.txtView.text = item.sleepDesc
+        holder.txtView.text = item.dreamtext
     }
 
     /*

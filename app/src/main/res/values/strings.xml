@@ -13,5 +13,7 @@
     <string name="save">Save</string>
     <string name="error">error</string>
     <string name="sleep_history">Sleep History</string>
+    <string name="hours">Hours:</string>
+    <string name="minutes">Minutes:</string>
 
 </resources>
