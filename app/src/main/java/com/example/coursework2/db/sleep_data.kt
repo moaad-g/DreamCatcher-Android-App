@@ -76,4 +76,23 @@ class ChunkDatabase(context: Context) :
 
         db.insert(CHUNKS_TABLE, null, values)
     }
+    fun getChunkByID(id: Int) : SleepModel? {
+        //Inserting values requires a wrapping
+        val query = "select * from $CHUNKS_TABLE where $CHUNK_ID == $id"
+        val db = this.readableDatabase
+        val newSleep = SleepModel()
+        val cursor = db.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            newSleep.id = Integer.parseInt(cursor.getString(0))
+            newSleep.dreamtext =  cursor.getString(1)
+            newSleep.rating = cursor.getInt(2)
+            newSleep.date = cursor.getLong(3)
+            newSleep.sleepTime = cursor.getInt(4)
+            cursor.close()
+            return newSleep
+        }
+        cursor.close()
+        return null
+    }
 }
+

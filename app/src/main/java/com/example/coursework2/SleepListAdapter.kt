@@ -23,7 +23,6 @@ class SleepListAdapter (private val sleepList: MutableList<SleepModel>) : Recycl
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.row_layout, parent, false)
-
         return ViewHolder(view)
     }
 
@@ -33,7 +32,6 @@ class SleepListAdapter (private val sleepList: MutableList<SleepModel>) : Recycl
         holder.dreamTextShort.text = item.dreamtext
         holder.dreamDate.text = DateFormat.format("yyyy-MM-dd", Date(item.date)).toString()
         holder.dreamRating.progress = item.rating
-
     }
 
     override fun getItemCount(): Int {
