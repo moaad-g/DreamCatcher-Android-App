@@ -15,5 +15,12 @@
     <string name="sleep_history">Sleep History</string>
     <string name="hours">Hours:</string>
     <string name="minutes">Minutes:</string>
+    <string name="view_sleep">View Sleep</string>
+    <string name="edit">Edit</string>
+    <string name="_12_12_2012">12-12-2012</string>
+    <string name="date">date</string>
+    <string name="sleep_duration">Sleep Duration</string>
+    <string name="_1">1</string>
+    <string name="dream_description">Dream Description:</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.coursework2
 
 import android.R.attr.button
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,12 +14,17 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coursework2.db.ChunkDatabase
 import java.lang.Integer.parseInt
+import android.text.format.DateFormat
+import android.view.Menu
+import java.util.Date
 
 
 class AddSleep : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_previous_night)
+        setSupportActionBar(findViewById(R.id.app_bar))
+
         val saveButton = findViewById<Button>(R.id.submit)
         val dreamText = findViewById<EditText>(R.id.dream_input)
         val dreamDate = findViewById<CalendarView>(R.id.select_date)
@@ -57,13 +63,35 @@ class AddSleep : AppCompatActivity() {
                 saveButton.isEnabled = hourTime.text.isNotEmpty() || minuteTime.text.isNotEmpty()
             }
         })
+        fun backToHome(view : View){
+            val newIntent = Intent(this,LandingPage::class.java);
+            startActivity(newIntent);
+        }
 
         saveButton.setOnClickListener {
-            val dt = dreamText.text.toString()
-            if (hourTime.text.isNotEmpty())
-            //val chunkTime = (parseInt(hourTime.text.toString())*60)+(parseInt(minuteTime.text.toString()))
-            Log.d("Tag","im here")
-            db.addChunk(dt)
+            val dreamTextVal = dreamText.text.toString()
+            var chunkTime = 0;
+            if (hourTime.text.isNotEmpty()){
+                chunkTime += (parseInt(hourTime.text.toString())*60)
+            }
+            if (minuteTime.text.isNotEmpty()){
+                chunkTime += (parseInt(minuteTime.text.toString()))
+            }
+            Log.d("Tag",dreamRating.progress.toString())
+            Log.d("Tag",dreamDate.date.toString())
+            val dreamDateMillis = dreamDate.date
+            val dreamDateString = DateFormat.format("yyyy-MM-dd", Date(dreamDateMillis)).toString()
+            Log.d("Tag", dreamDateString)
+
+            db.addChunk(dreamTextVal, chunkTime , dreamDate.date , dreamRating.progress)
+            backToHome(saveButton)
+
         }
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        return true
     }
 }

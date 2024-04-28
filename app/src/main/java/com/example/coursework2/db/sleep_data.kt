@@ -5,8 +5,9 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.coursework2.SleepModel
+import java.util.Date
 
-const val DATABASE_VERSION = 2
+const val DATABASE_VERSION = 3
 private const val DATABASE_NAME = "sleepdb"
 private const val CHUNKS_TABLE = "chunks"
 
@@ -26,11 +27,9 @@ class ChunkDatabase(context: Context) :
         val CREATE_CHUNKS_TABLE = "CREATE TABLE $CHUNKS_TABLE($CHUNK_ID INTEGER PRIMARY KEY,"+
                 "$COLUMN_DREAM_TEXT TEXT," +
                 "$COLUMN_DREAM_RATING INTEGER," +
-                "$COLUMN_DREAM_DATE DATE," +
-                "$CHUNK_TIME INTEGER," +
-                "$VN_PATH INTEGER)"
+                "$COLUMN_DREAM_DATE INTEGER," +
+                "$CHUNK_TIME INTEGER)"
         db.execSQL(CREATE_CHUNKS_TABLE)
-        print("here")
     }
 
     //If we need to change the database schema
@@ -49,8 +48,15 @@ class ChunkDatabase(context: Context) :
             do {
                 val id = Integer.parseInt(cursor.getString(0))
                 val text = cursor.getString(1)
+                val rating = cursor.getInt(2)
+                val datet = cursor.getLong(3)
+                val chunkt = cursor.getInt(4)
                 val newSleep = SleepModel()
                 newSleep.dreamtext = text
+                newSleep.rating = rating
+                newSleep.date = datet
+                newSleep.sleepTime = chunkt
+                newSleep.id = id
                 chunkList.add(newSleep)
             } while (cursor.moveToNext())
         }
@@ -58,15 +64,16 @@ class ChunkDatabase(context: Context) :
         return chunkList;
     }
 
-    fun addChunk(text: String) {
+    fun addChunk(dreamText: String, chunkTime: Int , dreamDate: Long, dreamRating: Int ) {
         //Inserting values requires a wrapping
         val values = ContentValues()
 
-        //of course, it's key-value pairs
-        values.put(COLUMN_DREAM_TEXT, text)
+        values.put(CHUNK_TIME, chunkTime)
+        values.put(COLUMN_DREAM_RATING, dreamRating)
+        values.put(COLUMN_DREAM_DATE, dreamDate)
+        values.put(COLUMN_DREAM_TEXT, dreamText)
         val db = this.writableDatabase
 
-        //pop it in, and don't worry about the nullColumnHack, it's probably fine
         db.insert(CHUNKS_TABLE, null, values)
     }
 }

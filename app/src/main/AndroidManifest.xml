@@ -24,6 +24,10 @@
             android:exported="false"
             android:label="AddSleep"
             android:parentActivityName=".LandingPage"/>
+        <activity android:name=".ViewSleep"
+            android:exported="false"
+            android:label="AddSleep"
+            android:parentActivityName=".SleepHistory"/>
         <activity
             android:name=".LandingPage"
             android:exported="true">

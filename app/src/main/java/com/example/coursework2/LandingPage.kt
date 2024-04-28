@@ -1,6 +1,7 @@
 package com.example.coursework2
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -14,8 +15,6 @@ class LandingPage : AppCompatActivity() {
         setContentView(R.layout.landing_page)
         setSupportActionBar(findViewById(R.id.app_bar))
         val db = ChunkDatabase(this);
-
-
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
