@@ -76,6 +76,15 @@ class ChunkDatabase(context: Context) :
 
         db.insert(CHUNKS_TABLE, null, values)
     }
+
+    fun editChunkTime(id: Int, chunkTime: Int) {
+        //Inserting values requires a wrapping
+        val values = ContentValues()
+        values.put(CHUNK_TIME, chunkTime)
+
+        val db = this.writableDatabase
+        db.update(CHUNKS_TABLE,values,"$CHUNK_ID = ?", arrayOf(id.toString()))
+    }
     fun getChunkByID(id: Int) : SleepModel? {
         //Inserting values requires a wrapping
         val query = "select * from $CHUNKS_TABLE where $CHUNK_ID == $id"

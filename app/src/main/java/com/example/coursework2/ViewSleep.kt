@@ -25,18 +25,31 @@ class ViewSleep : AppCompatActivity() {
 
         val db = ChunkDatabase(this);
         val sleepId = intent.getIntExtra("sleepId", 1)
-        Log.d("TAG", sleepId.toString())
         var sleepObj = db.getChunkByID(sleepId)
 
+        val editChunkButton = findViewById<Button>(R.id.chunk_edit_button)
+        val editDateButton = findViewById<Button>(R.id.date_edit_button)
         val description = findViewById<TextView>(R.id.show_desc)
         val hours = findViewById<TextView>(R.id.show_hours)
         val mins = findViewById<TextView>(R.id.show_mins)
         val date = findViewById<TextView>(R.id.date_text_view)
 
+        if (sleepObj != null) {
+            var hourval = sleepObj.sleepTime/60
+            var minuteval = sleepObj.sleepTime - hourval * 60
+            description.text = sleepObj.dreamtext
+            date.text = DateFormat.format("yyyy-MM-dd", Date(sleepObj.date)).toString()
+            mins.text = minuteval.toString()
+            hours.text = hourval.toString()
+        }
 
+        editChunkButton.setOnClickListener {
+            EditFragment(sleepId).show(supportFragmentManager, "EditChunk")
+        }
 
-
-
+        editDateButton.setOnClickListener {
+            EditFragment(sleepId).show(supportFragmentManager, "EditDate")
+        }
 
     }
 }

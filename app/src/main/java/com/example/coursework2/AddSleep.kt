@@ -43,8 +43,7 @@ class AddSleep : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                // Check if the entered value is above 60 and limit it
-                if ((s.toString().toIntOrNull() ?: 0) > 60) {
+                if ((s.toString().toIntOrNull() ?: 0) > 59) {
                     minuteTime.setText("")
                     minuteTime.setSelection(minuteTime.text.length)
                 }
@@ -77,11 +76,8 @@ class AddSleep : AppCompatActivity() {
             if (minuteTime.text.isNotEmpty()){
                 chunkTime += (parseInt(minuteTime.text.toString()))
             }
-            Log.d("Tag",dreamRating.progress.toString())
-            Log.d("Tag",dreamDate.date.toString())
             val dreamDateMillis = dreamDate.date
             val dreamDateString = DateFormat.format("yyyy-MM-dd", Date(dreamDateMillis)).toString()
-            Log.d("Tag", dreamDateString)
 
             db.addChunk(dreamTextVal, chunkTime , dreamDate.date , dreamRating.progress)
             backToHome(saveButton)
