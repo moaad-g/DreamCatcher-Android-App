@@ -4,8 +4,17 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Environment
+import android.util.Log
 import com.example.coursework2.SleepModel
 import java.util.Date
+import com.google.gson.Gson
+import java.io.File
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+
 
 const val DATABASE_VERSION = 3
 private const val DATABASE_NAME = "sleepdb"
@@ -62,6 +71,36 @@ class ChunkDatabase(context: Context) :
         }
         cursor.close()
         return chunkList;
+    }
+
+    fun exportChunks(): String? {
+        val chunkList = arrayListOf<SleepModel>()
+        val gson = Gson()
+
+        val db = this.readableDatabase
+        val query = "select * from $CHUNKS_TABLE limit 100"
+        val cursor = db.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            do {
+                val id = Integer.parseInt(cursor.getString(0))
+                val text = cursor.getString(1)
+                val rating = cursor.getInt(2)
+                val datet = cursor.getLong(3)
+                val chunkt = cursor.getInt(4)
+                val newSleep = SleepModel()
+                newSleep.dreamtext = text
+                newSleep.rating = rating
+                newSleep.date = datet
+                newSleep.sleepTime = chunkt
+                newSleep.id = id
+                chunkList.add(newSleep)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        val chunksJSON = gson.toJson(chunkList)
+
+        return chunksJSON
+
     }
 
     fun addChunk(dreamText: String, chunkTime: Int , dreamDate: Long, dreamRating: Int ) {

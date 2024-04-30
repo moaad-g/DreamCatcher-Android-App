@@ -67,6 +67,8 @@ class EditFragment (chunkId: Int) : DialogFragment() {
                 Log.d("TAG", chunkId.toString())
                 if (db != null) {
                     db.editChunkTime(chunkId , chunkTime)
+                    val toast = Toast.makeText(this.context, "Time Change Saved", Toast.LENGTH_SHORT)
+                    toast.show()
                 }
 
             }
@@ -76,9 +78,6 @@ class EditFragment (chunkId: Int) : DialogFragment() {
             toast.show()
 
         }
-
-
-
     }
 
 }

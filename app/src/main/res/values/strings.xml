@@ -22,5 +22,6 @@
     <string name="sleep_duration">Sleep Duration</string>
     <string name="_1">1</string>
     <string name="dream_description">Dream Description:</string>
+    <string name="profile">Profile</string>
 
 </resources>
