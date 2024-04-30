@@ -20,7 +20,6 @@ import java.io.FileOutputStream
 
 
 class LandingPage : AppCompatActivity() {
-    private val WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 101
     private val db = ChunkDatabase(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +36,10 @@ class LandingPage : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.profile_option -> {
-                // Handle menu item 1 click
                 true
             }
             R.id.export_option -> {
                 if (checkWritePermissions()) {
-
                     val chunkData = db.exportChunks()
                     val downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                     val file = File(downloadsFolder, "chunkData.json")
@@ -70,7 +67,7 @@ class LandingPage : AppCompatActivity() {
             // Permission is not granted, request it
             ActivityCompat.requestPermissions(
                 this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                WRITE_EXTERNAL_STORAGE_REQUEST_CODE
+                2
             )
             return false
         } else {

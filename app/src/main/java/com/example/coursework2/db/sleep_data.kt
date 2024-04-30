@@ -4,19 +4,11 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.os.Environment
-import android.util.Log
 import com.example.coursework2.SleepModel
-import java.util.Date
 import com.google.gson.Gson
-import java.io.File
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 
 
-const val DATABASE_VERSION = 3
+const val DATABASE_VERSION = 4
 private const val DATABASE_NAME = "sleepdb"
 private const val CHUNKS_TABLE = "chunks"
 
@@ -24,7 +16,7 @@ private const val CHUNK_ID = "_id"
 private const val COLUMN_DREAM_TEXT = "dreamtext"
 private const val COLUMN_DREAM_RATING = "rating"
 private const val COLUMN_DREAM_DATE = "datetime"
-private const val VN_PATH = "vnpath"
+private const val COLUMN_HAS_IMAGE = "img"
 private const val CHUNK_TIME = "chunk"
 class ChunkDatabase(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -37,7 +29,8 @@ class ChunkDatabase(context: Context) :
                 "$COLUMN_DREAM_TEXT TEXT," +
                 "$COLUMN_DREAM_RATING INTEGER," +
                 "$COLUMN_DREAM_DATE INTEGER," +
-                "$CHUNK_TIME INTEGER)"
+                "$CHUNK_TIME INTEGER," +
+                "$COLUMN_HAS_IMAGE INTEGER)"
         db.execSQL(CREATE_CHUNKS_TABLE)
     }
 
@@ -103,21 +96,25 @@ class ChunkDatabase(context: Context) :
 
     }
 
-    fun addChunk(dreamText: String, chunkTime: Int , dreamDate: Long, dreamRating: Int ) {
+    fun addChunk(dreamText: String, chunkTime: Int, dreamDate: Long, dreamRating: Int, hasImg: Boolean) {
         //Inserting values requires a wrapping
         val values = ContentValues()
+        var imgInt = 0
 
+        if (hasImg) {
+            imgInt = 1
+        }
         values.put(CHUNK_TIME, chunkTime)
         values.put(COLUMN_DREAM_RATING, dreamRating)
         values.put(COLUMN_DREAM_DATE, dreamDate)
         values.put(COLUMN_DREAM_TEXT, dreamText)
+        values.put(COLUMN_HAS_IMAGE, imgInt)
         val db = this.writableDatabase
 
         db.insert(CHUNKS_TABLE, null, values)
     }
 
     fun editChunkTime(id: Int, chunkTime: Int) {
-        //Inserting values requires a wrapping
         val values = ContentValues()
         values.put(CHUNK_TIME, chunkTime)
 
@@ -136,6 +133,12 @@ class ChunkDatabase(context: Context) :
             newSleep.rating = cursor.getInt(2)
             newSleep.date = cursor.getLong(3)
             newSleep.sleepTime = cursor.getInt(4)
+            val imgInt = cursor.getInt(5)
+            if (imgInt == 1){
+                newSleep.hasImg= true
+            } else {
+                newSleep.hasImg= false
+            }
             cursor.close()
             return newSleep
         }

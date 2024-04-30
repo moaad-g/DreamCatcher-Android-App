@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28"
         tools:ignore="ScopedStorage" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,6 +22,20 @@
             android:exported="false"
             android:label="SleepHistory"
             android:parentActivityName=".LandingPage"/>
+        <activity
+            android:name=".ViewExternal"
+            android:parentActivityName=".LandingPage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="drmctchr.com"
+                    android:pathPrefix="/viewsleep"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
         <activity android:name=".AddSleep"
             android:exported="false"
             android:label="AddSleep"
@@ -39,5 +53,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.coursework2.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths" />
+        </provider>
     </application>
 </manifest>

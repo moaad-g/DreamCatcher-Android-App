@@ -25,5 +25,7 @@
     <string name="profile">Profile</string>
     <string name="share">Share</string>
     <string name="copy_to_clipboard">copy to clipboard</string>
+    <string name="take_photo">take photo</string>
+    <string name="interpret_your_dream">Interpret your dream</string>
 
 </resources>
