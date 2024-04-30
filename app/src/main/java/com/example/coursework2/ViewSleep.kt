@@ -1,20 +1,17 @@
 package com.example.coursework2
 
-import android.R.attr.button
+import android.R.attr.label
+import android.R.attr.text
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.view.View
+import android.text.format.DateFormat
 import android.widget.Button
-import android.widget.CalendarView
-import android.widget.EditText
-import android.widget.SeekBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coursework2.db.ChunkDatabase
-import java.lang.Integer.parseInt
-import android.text.format.DateFormat
-import android.widget.TextView
+import com.google.gson.Gson
 import java.util.Date
 
 
@@ -33,6 +30,7 @@ class ViewSleep : AppCompatActivity() {
         val hours = findViewById<TextView>(R.id.show_hours)
         val mins = findViewById<TextView>(R.id.show_mins)
         val date = findViewById<TextView>(R.id.date_text_view)
+        val copyButton = findViewById<Button>(R.id.copy_JSON)
 
         if (sleepObj != null) {
             var hourval = sleepObj.sleepTime/60
@@ -47,9 +45,15 @@ class ViewSleep : AppCompatActivity() {
             EditFragment(sleepId).show(supportFragmentManager, "EditChunk")
         }
 
-        editDateButton.setOnClickListener {
-            EditFragment(sleepId).show(supportFragmentManager, "EditDate")
+        copyButton.setOnClickListener {
+            val gson = Gson()
+            val chunkData = gson.toJson(sleepObj).toString()
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val chunkJson = ClipData.newPlainText("Sleep Data",chunkData )
+            clipboard.setPrimaryClip(chunkJson)
         }
+
+
 
     }
 }

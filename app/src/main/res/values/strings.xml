@@ -23,5 +23,7 @@
     <string name="_1">1</string>
     <string name="dream_description">Dream Description:</string>
     <string name="profile">Profile</string>
+    <string name="share">Share</string>
+    <string name="copy_to_clipboard">copy to clipboard</string>
 
 </resources>
