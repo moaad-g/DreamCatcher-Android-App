@@ -2,6 +2,7 @@ package com.example.coursework2
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Environment
@@ -21,11 +22,14 @@ import java.io.FileOutputStream
 
 class LandingPage : AppCompatActivity() {
     private val db = ChunkDatabase(this)
+    lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.landing_page)
         setSupportActionBar(findViewById(R.id.app_bar))
         val db = ChunkDatabase(this);
+
+        var sharedpreferences = getSharedPreferences("mypref", MODE_PRIVATE)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
@@ -36,6 +40,8 @@ class LandingPage : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.profile_option -> {
+                val newIntent = Intent(this,Settings::class.java);
+                startActivity(newIntent);
                 true
             }
             R.id.export_option -> {

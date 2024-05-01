@@ -22,8 +22,13 @@
             android:exported="false"
             android:label="SleepHistory"
             android:parentActivityName=".LandingPage"/>
+        <activity android:name=".Settings"
+            android:exported="false"
+            android:label="Settings"
+            android:parentActivityName=".LandingPage"/>
         <activity
             android:name=".ViewExternal"
+            android:label="ViewExternal"
             android:parentActivityName=".LandingPage"
             android:exported="true">
             <intent-filter>

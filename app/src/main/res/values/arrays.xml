@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort_recycler">
+        <item>Sleep Date</item>
+        <item>Sleep Quality</item>
+        <item>Sleep Duration</item>
+        <item>Date Added</item>
+    </string-array>
+</resources>

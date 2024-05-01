@@ -48,5 +48,5 @@ class ViewExternal : AppCompatActivity() {
         val dreamDateMillis = sleepObj.date
 
 
-    } 
+    }
 }

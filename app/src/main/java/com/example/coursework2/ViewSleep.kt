@@ -89,6 +89,14 @@ class ViewSleep : AppCompatActivity() {
             startActivity(Intent.createChooser(shareIntent , "send to"))
         }
 
+        fun createShareText() : String {
+            var shareText =""
+
+
+
+            return shareText
+        }
+
         interpretButton.setOnClickListener {
             val webpage: Uri = Uri.parse("https://dreaminterpreter.ai/")
             val intent = Intent(Intent.ACTION_VIEW, webpage)
