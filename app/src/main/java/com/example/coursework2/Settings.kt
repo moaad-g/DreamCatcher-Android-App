@@ -33,11 +33,10 @@ class Settings : ToolbarBase() {
         val setUsernameButton = findViewById<Button>(R.id.new_username)
         val newUsername = findViewById<EditText>(R.id.edit_username)
 
-
         setUsernameButton.setOnClickListener{
             if (newUsername.text.toString().isNotEmpty() && newUsername.text.toString() != "username" ){
-                val sharedpreferences = getSharedPreferences("preferences", MODE_PRIVATE)
-                val editor = sharedpreferences.edit()
+                val sharedPreferences = getSharedPreferences("preferences", MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
                 editor.putString("username", newUsername.text.toString())
                 editor.apply()
                 val toast = Toast.makeText(this, "Username Changed", Toast.LENGTH_SHORT)

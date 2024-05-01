@@ -1,41 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D1C4E9"
-    android:orientation="vertical"
     >
-    <include layout="@layout/toolbar"/>
+
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
 
     <TextView
         android:id="@+id/sleep_history_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginBottom="28dp"
         android:text="@string/sleep_history"
         android:textAlignment="center"
         android:textColor="#353434"
         android:textSize="48sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/sort_sleep"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:entries="@array/sort_recycler" />
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="4dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/sleep_recycler"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_vertical">
 
+        <TextView
+            android:id="@+id/sleep_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sort_by"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="98dp" />
+
+        <Spinner
+            android:id="@+id/sort_sleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="12dp"
+            android:layout_weight="1"
+            android:entries="@array/sort_recycler" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sleep_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="208dp"
         android:scrollbars="vertical"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include2" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
