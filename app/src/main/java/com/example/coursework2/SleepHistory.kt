@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.coursework2.db.ChunkDatabase
 import kotlin.math.log
 
-class SleepHistory : AppCompatActivity() {
+class SleepHistory : ToolbarBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sleep_history)
+        setSupportActionBar(findViewById(R.id.app_bar))
         val db = ChunkDatabase(this);
         var sleepList = db.readChunks()
         print(sleepList)

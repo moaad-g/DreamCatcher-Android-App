@@ -22,9 +22,9 @@ import java.io.File
 import java.io.FileOutputStream
 
 
-class AddSleep : AppCompatActivity() {
+class AddSleep : ToolbarBase() {
 
-    var dreamImage : Bitmap? = null
+    private var dreamImage : Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //get layout and buttons

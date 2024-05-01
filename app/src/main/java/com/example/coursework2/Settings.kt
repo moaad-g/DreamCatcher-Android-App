@@ -24,10 +24,11 @@ import com.google.gson.Gson
 import java.io.File
 import java.util.Date
 
-class Settings : AppCompatActivity() {
+class Settings : ToolbarBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
+        setSupportActionBar(findViewById(R.id.app_bar))
 
         val setUsernameButton = findViewById<Button>(R.id.new_username)
         val newUsername = findViewById<EditText>(R.id.edit_username)

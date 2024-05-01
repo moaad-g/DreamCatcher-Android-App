@@ -25,10 +25,11 @@ import java.io.File
 import java.util.Date
 
 
-class ViewSleep : AppCompatActivity() {
+class ViewSleep : ToolbarBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_edit_chunk)
+        setSupportActionBar(findViewById(R.id.app_bar))
 
         val db = ChunkDatabase(this);
         val sleepId = intent.getIntExtra("sleepId", 1)
