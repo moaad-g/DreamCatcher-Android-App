@@ -1,6 +1,7 @@
 package com.example.coursework2
 
 import android.R.attr.label
+import android.R.attr.rating
 import android.R.attr.text
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -18,6 +19,7 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.example.coursework2.db.ChunkDatabase
@@ -59,6 +61,7 @@ class ViewSleep : ToolbarBase() , EditFragment.EditFragmentListener {
         val textEditButton = findViewById<Button>(R.id.dream_text_edit_button)
         val interpretButton = findViewById<Button>(R.id.interpret)
         val shareButton = findViewById<Button>(R.id.share)
+        val dreamRating = findViewById<TextView>(R.id.sleep_quality_text)
 
         val date = findViewById<TextView>(R.id.date_text_view)
         val copyButton = findViewById<Button>(R.id.copy_JSON)
@@ -68,10 +71,13 @@ class ViewSleep : ToolbarBase() , EditFragment.EditFragmentListener {
         if (sleepObj != null) {
             var hourval = sleepObj.sleepTime / 60
             var minuteval = sleepObj.sleepTime - hourval * 60
+            val ratingtext = (sleepObj.rating).toString()+"/100"
             description.text = sleepObj.dreamtext
             date.text = DateFormat.format("yyyy-MM-dd", Date(sleepObj.date)).toString()
             mins.text = minuteval.toString()
             hours.text = hourval.toString()
+            dreamRating.text = ratingtext
+
             if (sleepObj.hasImg) {
                 val imageFolder =
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
@@ -116,10 +122,15 @@ class ViewSleep : ToolbarBase() , EditFragment.EditFragmentListener {
 
         interpretButton.setOnClickListener {
             val webpage: Uri = Uri.parse("https://dreaminterpreter.ai/")
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val dreamClip = ClipData.newPlainText("Sleep Data", description.text.toString())
+            clipboard.setPrimaryClip(dreamClip)
             val intent = Intent(Intent.ACTION_VIEW, webpage)
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
             }
+            val toast = Toast.makeText(this, "Dream Description Copied to Clipboard", Toast.LENGTH_SHORT)
+            toast.show()
         }
 
         copyButton.setOnClickListener {
@@ -128,6 +139,8 @@ class ViewSleep : ToolbarBase() , EditFragment.EditFragmentListener {
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val chunkJson = ClipData.newPlainText("Sleep Data", chunkData)
             clipboard.setPrimaryClip(chunkJson)
+            val toast = Toast.makeText(this, "Dream JSON Copied to Clipboard", Toast.LENGTH_SHORT)
+            toast.show()
         }
 
     }
@@ -150,7 +163,7 @@ class ViewSleep : ToolbarBase() , EditFragment.EditFragmentListener {
         baseUrl += "date=$dateString&hours=$hours&mins=$minutes&rat=${sleepObj.rating}&txt=${URLEncoder.encode(sleepObj.dreamtext, "UTF-8")}"
 
 
-        shareText += "On $dateString I slept for $hours Hours and $minutes \n " +
+        shareText += "On $dateString I slept for $hours Hours and $minutes Minutes \n " +
                 "I gave this sleep a rating of ${sleepObj.rating}/100. \n" +
                 "This is a description of my dream: \n ${sleepObj.dreamtext} \n"+"\n$baseUrl\n"
 

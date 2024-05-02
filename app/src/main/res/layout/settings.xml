@@ -15,7 +15,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/username"
+        android:text=""
         android:labelFor="@id/edit_username"
         app:layout_constraintBottom_toTopOf="@+id/new_username"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,8 +25,8 @@
 
     <Button
         android:id="@+id/new_username"
-        android:layout_width="132dp"
-        android:layout_height="78dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
         android:layout_marginBottom="204dp"
         android:onClick="toNewChunk"

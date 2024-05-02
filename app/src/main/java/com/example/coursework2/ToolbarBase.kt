@@ -23,6 +23,11 @@ open class ToolbarBase : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.landing_page)
         setSupportActionBar(findViewById(R.id.app_bar))
+        if (!checkWritePermissions()){
+            val toast = Toast.makeText(this, "Need File Permissions", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
@@ -47,8 +52,10 @@ open class ToolbarBase : AppCompatActivity() {
                         fileOutputStream.write(chunkData.toByteArray())
                     }
                     fileOutputStream.close()
+                    val toast = Toast.makeText(this, "Data Saved to Downloads Folder", Toast.LENGTH_SHORT)
+                    toast.show()
                 } else {
-                    val toast = Toast.makeText(this, "noperms", Toast.LENGTH_SHORT)
+                    val toast = Toast.makeText(this, "Need File Permissions", Toast.LENGTH_SHORT)
                     toast.show()
                 }
                 true

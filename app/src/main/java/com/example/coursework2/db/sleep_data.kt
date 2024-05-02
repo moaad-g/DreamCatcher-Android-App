@@ -8,7 +8,7 @@ import com.example.coursework2.SleepModel
 import com.google.gson.Gson
 
 
-const val DATABASE_VERSION = 5
+const val DATABASE_VERSION = 7
 private const val DATABASE_NAME = "sleepdb"
 private const val CHUNKS_TABLE = "chunks"
 
