@@ -5,150 +5,205 @@
     android:id="@+id/add_previous_night"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D1C4E9"
     >
-    <include layout="@layout/toolbar"/>
+
+    <include
+        android:id="@+id/include3"
+        layout="@layout/toolbar" />
 
     <TextView
         android:id="@+id/add_new_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
-        android:text="@string/add_new_button"
-        android:textColor="#353434"
-        android:textSize="48sp"
+        android:text="@string/new_dream"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="384dp"
+        android:layout_height="499dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintTop_toTopOf="@+id/add_new_title"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <LinearLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_new_title">
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/Date"
-                android:textStyle="bold" />
-
-            <CalendarView
-                android:id="@+id/select_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/what_dream"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/what_did_you_dream_about"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/dream_input"
-                android:layout_width="match_parent"
-                android:layout_height="132dp"
-                android:autofillHints="I dreamt about..."
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/describe_your_dream"
-                android:inputType="textMultiLine"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/rate_sleep"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:text="@string/rate_your_sleep"
-                android:textStyle="bold" />
-
-            <SeekBar
-                android:id="@+id/seekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/sleep_time_question"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:text="@string/how_long_did_you_sleep_for"
-                android:textStyle="bold" />
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/get_hours_title"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/Date"
+                    android:textStyle="bold" />
+
+                <CalendarView
+                    android:id="@+id/select_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_margin="16dp"
+                    />
+
+                <TextView
+                    android:id="@+id/what_dream"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/what_did_you_dream_about"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/dream_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="132dp"
+                    android:autofillHints="I dreamt about..."
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="@string/describe_your_dream"
+                    android:inputType="textMultiLine"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/rate_sleep"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"
-                    android:text="@string/hours"
+                    android:text="@string/rate_your_sleep"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/getHours"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="number" />
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    />
 
                 <TextView
-                    android:id="@+id/get_minutes_title"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/sleep_time_question"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/minutes"
+                    android:paddingTop="20dp"
+                    android:text="@string/how_long_did_you_sleep_for"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/getMins"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="number" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/get_hours_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:text="@string/hours"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/getHours"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/get_minutes_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/minutes"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/getMins"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    />
+
+
+                <TextView
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/add_image_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_photo"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:text="@string/save"
+                    android:src="@drawable/baseline_photo_24"/>
+
+                <Button
+                    android:layout_gravity="center"
+                    android:id="@+id/take_photo"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/take_photo"
+                    app:icon="@drawable/baseline_photo_camera_24"/>
 
             </LinearLayout>
+        </ScrollView>
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:text="@string/save" />
 
-            <Button
-                android:id="@+id/take_photo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/take_photo" />
+    </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/submit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/save" />
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-        </LinearLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

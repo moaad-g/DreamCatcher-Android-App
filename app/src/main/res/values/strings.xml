@@ -31,5 +31,7 @@
     <string name="blank_date">XXXX-XX-XX</string>
     <string name="username">username</string>
     <string name="sort_by">Sort By:</string>
+    <string name="new_dream">New Dream</string>
+    <string name="add_photo">Add Photo:</string>
 
 </resources>
