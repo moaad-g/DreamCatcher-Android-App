@@ -52,7 +52,6 @@ class EditFragment (chunkId: Int) : DialogFragment() {
             if (((minuteTime.text).toString().toIntOrNull() ?: 0) > 59){
                 val toast = Toast.makeText(this.context, "Please Input a Valid Time", Toast.LENGTH_SHORT)
                 toast.show()
-
             } else {
                 var chunkTime = 0;
                 if (hourTime.text.isNotEmpty()){

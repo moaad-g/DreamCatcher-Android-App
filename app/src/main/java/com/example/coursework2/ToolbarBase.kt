@@ -53,6 +53,21 @@ open class ToolbarBase : AppCompatActivity() {
                 }
                 true
             }
+            R.id.home -> {
+                val newIntent = Intent(this,LandingPage::class.java);
+                startActivity(newIntent);
+                true
+            }
+            R.id.addnew -> {
+                val newIntent = Intent(this,AddSleep::class.java);
+                startActivity(newIntent);
+                true
+            }
+            R.id.history -> {
+                val newIntent = Intent(this,SleepHistory::class.java);
+                startActivity(newIntent);
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

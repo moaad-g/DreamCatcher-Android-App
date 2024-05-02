@@ -16,10 +16,13 @@
         android:ems="10"
         android:inputType="text"
         android:text="@string/username"
+        android:labelFor="@id/edit_username"
         app:layout_constraintBottom_toTopOf="@+id/new_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="Add username" />
+
     <Button
         android:id="@+id/new_username"
         android:layout_width="132dp"

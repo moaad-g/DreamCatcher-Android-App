@@ -28,8 +28,6 @@ class ViewExternal : AppCompatActivity() {
         setContentView(R.layout.view_external)
         setSupportActionBar(findViewById(R.id.app_bar))
 
-        val interpretButton = findViewById<Button>(R.id.interpret)
-        val shareButton = findViewById<Button>(R.id.share)
 
         val description = findViewById<TextView>(R.id.show_desc)
         val hours = findViewById<TextView>(R.id.show_hours)

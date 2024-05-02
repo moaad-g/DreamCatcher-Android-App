@@ -10,4 +10,22 @@
           android:id="@+id/export_option"
           app:showAsAction="never"
         />
+    <item
+        android:title="@string/home"
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:title="@string/add_new_button"
+        android:id="@+id/addnew"
+        android:icon="@drawable/baseline_add_circle_24"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:title="@string/history"
+        android:id="@+id/history"
+        android:icon="@drawable/baseline_calendar_month_24"
+        app:showAsAction="ifRoom"
+        />
 </menu>
