@@ -4,24 +4,22 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.text.format.DateFormat
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import com.example.coursework2.db.ChunkDatabase
 import java.lang.Integer.parseInt
-import java.util.Date
-import java.util.zip.Inflater
 
 class EditFragment (chunkId: Int) : DialogFragment() {
+
+    interface EditFragmentListener {
+        fun onUpdateTime(hour: Int, minute: Int)
+        fun onUpdateText(text:String)
+    }
+
+    var listener: EditFragmentListener? = null
 
     val newID = chunkId;
     @SuppressLint("InflateParams")
@@ -30,15 +28,15 @@ class EditFragment (chunkId: Int) : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             val inflater = requireActivity().layoutInflater
             val view = when (tag) {
-                "EditChunk" -> inflater.inflate(R.layout.edit_chunk, null)
-                "EditDate" -> inflater.inflate(R.layout.edit_date, null)
+                "Time" -> inflater.inflate(R.layout.edit_chunk, null)
+                "Text" -> inflater.inflate(R.layout.edit_text, null)
                 else -> inflater.inflate(R.layout.edit_chunk, null)
             }
             view.findViewById<Button>(R.id.submit_new_chunk).setOnClickListener {
                 when (tag) {
-                    "EditChunk" -> checkTime(view , newID)
-                    "EditDate" -> checkTime(view, newID)
-                    else -> checkTime(view, newID)
+                    "Time" -> changeTime(view , newID)
+                    "Text" -> changeDream(view, newID)
+                    else -> changeTime(view, newID)
                 }
             }
             builder.setView(view)
@@ -46,11 +44,10 @@ class EditFragment (chunkId: Int) : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
-    private fun checkTime(view:View , chunkId: Int){
+    private fun changeTime(view:View , chunkId: Int){
         val minuteTime = view.findViewById<EditText>(R.id.getMins)
         val hourTime = view.findViewById<EditText>(R.id.getHours)
         val db = this.context?.let { ChunkDatabase(it) };
-
         if (hourTime.text.isNotEmpty() || minuteTime.text.isNotEmpty()){
             if (((minuteTime.text).toString().toIntOrNull() ?: 0) > 59){
                 val toast = Toast.makeText(this.context, "Please Input a Valid Time", Toast.LENGTH_SHORT)
@@ -64,13 +61,13 @@ class EditFragment (chunkId: Int) : DialogFragment() {
                 if (minuteTime.text.isNotEmpty()){
                     chunkTime += (parseInt(minuteTime.text.toString()))
                 }
-                Log.d("TAG", chunkId.toString())
                 if (db != null) {
                     db.editChunkTime(chunkId , chunkTime)
                     val toast = Toast.makeText(this.context, "Time Change Saved", Toast.LENGTH_SHORT)
                     toast.show()
+                    (activity as? EditFragmentListener)?.onUpdateTime(chunkTime / 60, chunkTime % 60)
+                    this.dismiss()
                 }
-
             }
 
         } else {
@@ -79,5 +76,20 @@ class EditFragment (chunkId: Int) : DialogFragment() {
 
         }
     }
-
+    private fun changeDream(view:View , chunkId: Int){
+        val dreamText = view.findViewById<EditText>(R.id.dream_input)
+        val db = this.context?.let { ChunkDatabase(it) };
+        if (dreamText.text.isNotEmpty()){
+            if (db != null) {
+                db.editChunkText(chunkId , dreamText.text.toString())
+                val toast = Toast.makeText(this.context, "Dream data saved", Toast.LENGTH_SHORT)
+                toast.show()
+                (activity as? EditFragmentListener)?.onUpdateText(dreamText.text.toString())
+                this.dismiss()
+            }
+        } else {
+            val toast = Toast.makeText(this.context, "Please Input Text", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+    }
 }

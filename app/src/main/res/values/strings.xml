@@ -27,7 +27,7 @@
     <string name="copy_to_clipboard">Copy JSON</string>
     <string name="take_photo">take photo</string>
     <string name="interpret_your_dream">Interpret Dream</string>
-    <string name="change_username">Change Username</string>
+    <string name="change_username">Save Username</string>
     <string name="blank_date">XXXX-XX-XX</string>
     <string name="username">username</string>
     <string name="sort_by">Sort By:</string>
@@ -40,5 +40,9 @@
     <string name="mins">Mins:</string>
     <string name="photo">Photo:</string>
     <string name="dreamcatcher_logo">Dreamcatcher Logo</string>
+    <string name="date_rating">Date Rating:</string>
+    <string name="_0_100">0/100</string>
+    <string name="sleep_quality">Sleep Quality:</string>
+    <string name="other_user_s_sleep_details">Other User\'s Sleep Details</string>
 
 </resources>

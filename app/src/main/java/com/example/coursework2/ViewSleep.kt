@@ -29,7 +29,20 @@ import java.net.URLEncoder
 
 
 
-class ViewSleep : ToolbarBase() {
+class ViewSleep : ToolbarBase() , EditFragment.EditFragmentListener {
+
+    lateinit var description : TextView
+    lateinit var hours : TextView
+    lateinit var mins : TextView
+    override fun onUpdateTime(hour: Int, minute: Int) {
+        // Update the view with the new hour and minute values
+        hours.text = hour.toString()
+        mins.text = minute.toString()
+    }
+    override fun onUpdateText(text: String) {
+        description.text = text
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_edit_chunk)
@@ -39,13 +52,14 @@ class ViewSleep : ToolbarBase() {
         val sleepId = intent.getIntExtra("sleepId", 1)
         var sleepObj = db.getChunkByID(sleepId)
 
+        description = findViewById<TextView>(R.id.show_desc)
+        hours = findViewById<TextView>(R.id.show_hours)
+        mins = findViewById<TextView>(R.id.show_mins)
         val editChunkButton = findViewById<Button>(R.id.chunk_edit_button)
+        val textEditButton = findViewById<Button>(R.id.dream_text_edit_button)
         val interpretButton = findViewById<Button>(R.id.interpret)
         val shareButton = findViewById<Button>(R.id.share)
 
-        val description = findViewById<TextView>(R.id.show_desc)
-        val hours = findViewById<TextView>(R.id.show_hours)
-        val mins = findViewById<TextView>(R.id.show_mins)
         val date = findViewById<TextView>(R.id.date_text_view)
         val copyButton = findViewById<Button>(R.id.copy_JSON)
         val imageView = findViewById<ImageView>(R.id.image)
@@ -69,15 +83,23 @@ class ViewSleep : ToolbarBase() {
         }
 
         editChunkButton.setOnClickListener {
-            EditFragment(sleepId).show(supportFragmentManager, "EditChunk")
+            val editFragment = EditFragment(sleepId)
+            editFragment.listener = this
+            editFragment.show(supportFragmentManager, "Time")
+        }
+
+        textEditButton.setOnClickListener {
+            val editFragment = EditFragment(sleepId)
+            editFragment.listener = this
+            editFragment.show(supportFragmentManager, "Text")
         }
 
         shareButton.setOnClickListener {
             val shareIntent = Intent()
             shareIntent.action = Intent.ACTION_SEND_MULTIPLE
             if (sleepObj != null) {
-                shareIntent.putExtra(Intent.EXTRA_TEXT, createShareText(sleepObj))
-                if (sleepObj.hasImg) {
+                shareIntent.putExtra(Intent.EXTRA_TEXT, createShareText(sleepObj!!))
+                if (sleepObj!!.hasImg) {
                     val imageFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
                     val file = File(imageFolder, "$dreamDateMillis.jpg")
                     val uriList = ArrayList<Uri>()

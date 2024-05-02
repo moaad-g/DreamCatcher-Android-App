@@ -87,7 +87,6 @@
                     android:gravity="start|top"
                     android:hint="@string/describe_your_dream"
                     android:inputType="textMultiLine"
-                    android:textColor="#000000"
                     android:textSize="12sp" />
 
 

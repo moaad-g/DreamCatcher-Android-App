@@ -25,21 +25,47 @@ import java.util.Date
 class ViewExternal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.view_edit_chunk)
+        setContentView(R.layout.view_external)
+        setSupportActionBar(findViewById(R.id.app_bar))
+
+        val interpretButton = findViewById<Button>(R.id.interpret)
+        val shareButton = findViewById<Button>(R.id.share)
+
+        val description = findViewById<TextView>(R.id.show_desc)
+        val hours = findViewById<TextView>(R.id.show_hours)
+        val title = findViewById<TextView>(R.id.view_title)
+        val mins = findViewById<TextView>(R.id.show_mins)
+        val date = findViewById<TextView>(R.id.date_text_view)
+        val sleepQual = findViewById<TextView>(R.id.sleep_quality_text)
+        val copyButton = findViewById<Button>(R.id.copy_JSON)
 
         val intent = intent
-
-        // Get the data from the intent
         val intentData: Uri? = intent.data
 
         if (intentData != null && intentData.scheme == "https" && intentData.host == "drmctchr.com" && intentData.path == "/viewsleep") {
             // Parse the query parameters from the URI
-            val username: String? = intentData.getQueryParameter("username")
-            val date: String? = intentData.getQueryParameter("date")
-            val hours: String? = intentData.getQueryParameter("hours")
-            val mins: String? = intentData.getQueryParameter("mins")
-            val rat: String? = intentData.getQueryParameter("rat")
-            val txt: String? = intentData.getQueryParameter("txt")
+            val username = intentData.getQueryParameter("username")
+            val datein= intentData.getQueryParameter("date")
+            val hoursin = intentData.getQueryParameter("hours")
+            val minsin = intentData.getQueryParameter("mins")
+            val rat= intentData.getQueryParameter("rat")
+            val txt= intentData.getQueryParameter("txt")
+
+            val ratText = rat.toString()+"/100"
+
+            description.text = txt;
+            date.text = datein
+            hours.text = hoursin
+            mins.text = minsin
+            sleepQual.text = ratText
+
+            if (username != "User" ){
+                val newtitle = "$username 's Sleep Details"
+                title.text = newtitle
+
+            }
+
+
 
             // Now you have all the parameters, you can use them as needed
             Log.d("TAG", "Username: $username")

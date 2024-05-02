@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <EditText
+        android:id="@+id/dream_input"
+        android:layout_width="match_parent"
+        android:layout_height="132dp"
+        android:autofillHints="I dreamt about..."
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/describe_your_dream"
+        android:inputType="textMultiLine"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/submit_new_chunk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save" />
+
+</LinearLayout>

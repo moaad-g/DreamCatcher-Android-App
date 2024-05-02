@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
-        android:text="@string/your_sleep_details"
+        android:text="@string/other_user_s_sleep_details"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -131,14 +131,7 @@
                     android:layout_weight="1"
                     android:text="@string/_1"
                     android:textSize="20sp"
-                     />
-
-                <Button
-                    android:id="@+id/chunk_edit_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-                    app:icon="@drawable/baseline_edit_24"/>
+                    />
 
             </LinearLayout>
 
@@ -163,14 +156,6 @@
                     android:layout_weight="3"
                     android:text="@string/_12_12_2012"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-                <Button
-                    android:id="@+id/dream_text_edit_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-                    app:icon="@drawable/baseline_edit_24"
-                    />
 
             </LinearLayout>
 
@@ -213,15 +198,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/copy_to_clipboard"
-                        style="@style/Widget.Material3.Button.TextButton" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:id="@+id/share"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/share"
                         style="@style/Widget.Material3.Button.TextButton" />
 
                     <Button
