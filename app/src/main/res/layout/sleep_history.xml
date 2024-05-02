@@ -9,26 +9,20 @@
 
     <include
         android:id="@+id/include2"
-        layout="@layout/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        layout="@layout/toolbar" />
 
 
     <TextView
-        android:id="@+id/sleep_history_title"
-        android:layout_width="match_parent"
+        android:id="@+id/add_new_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="96dp"
         android:text="@string/sleep_history"
-        android:textAlignment="center"
-        android:textColor="#353434"
-        android:textSize="48sp"
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -43,7 +37,7 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/sleep_description"
+            android:id="@+id/sort_by"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -66,7 +60,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sleep_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="208dp"
         android:scrollbars="vertical"

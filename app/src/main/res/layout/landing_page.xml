@@ -10,14 +10,13 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="@color/md_theme_onPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:title="DreamCatcher"/>
+        app:title="DreamCatcher"
+        android:elevation="20dp"/>
 
     <Button
         android:id="@+id/new_entry"
@@ -48,12 +47,11 @@
         android:layout_width="282dp"
         android:layout_height="258dp"
         android:layout_marginBottom="288dp"
-        android:rotation="49"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/baseline_brightness_3_24" />
+        app:srcCompat="@drawable/drmctchr" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

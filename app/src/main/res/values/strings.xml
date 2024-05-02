@@ -8,7 +8,7 @@
     <string name="Date">Date</string>
     <string name="what_did_you_dream_about">What did you dream about?</string>
     <string name="describe_your_dream">describe your dream…</string>
-    <string name="rate_your_sleep">Rate your sleep</string>
+    <string name="rate_your_sleep">Rate Your Sleep:</string>
     <string name="how_long_did_you_sleep_for">How long did you sleep for?</string>
     <string name="save">Save</string>
     <string name="error">error</string>
@@ -33,5 +33,8 @@
     <string name="sort_by">Sort By:</string>
     <string name="new_dream">New Dream</string>
     <string name="add_photo">Add Photo:</string>
+    <string name="date_colon">Date:</string>
+    <string name="sleep_image">Sleep Image</string>
+    <string name="sleep_time_icon">sleep time icon</string>
 
 </resources>

@@ -28,7 +28,13 @@ class SleepListAdapter (private val sleepList: MutableList<SleepModel>) : Recycl
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = sleepList[position]
-        holder.sleepImage.setImageResource(R.drawable.red_smile)
+        if (item.sleepTime > 419){
+            holder.sleepImage.setImageResource(R.drawable.time_green)
+        } else if (item.sleepTime > 270){
+            holder.sleepImage.setImageResource(R.drawable.time_orange)
+        } else {
+            holder.sleepImage.setImageResource(R.drawable.time_red)
+        }
         holder.dreamTextShort.text = item.dreamtext
         holder.dreamDate.text = DateFormat.format("yyyy-MM-dd", Date(item.date)).toString()
         holder.dreamRating.progress = item.rating
