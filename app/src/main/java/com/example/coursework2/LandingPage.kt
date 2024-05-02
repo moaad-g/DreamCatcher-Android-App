@@ -9,6 +9,7 @@ import android.os.Environment
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,14 @@ class LandingPage : ToolbarBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.landing_page)
         setSupportActionBar(findViewById(R.id.app_bar))
+        val welcomeMsg = findViewById<TextView>(R.id.welcome)
+        val sharedPreferences = getSharedPreferences("preferences", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", "not_set")
+        var newWelcome = ""
+        if (username != "not_set") {
+            newWelcome = welcomeMsg.text.toString() + " $username"
+        }
+        welcomeMsg.text = newWelcome
     }
     fun toSleepList(view : View){
         val newIntent = Intent(this,SleepHistory::class.java);

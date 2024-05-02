@@ -44,5 +44,6 @@
     <string name="_0_100">0/100</string>
     <string name="sleep_quality">Sleep Quality:</string>
     <string name="other_user_s_sleep_details">Other User\'s Sleep Details</string>
+    <string name="welcome_back">Welcome Back</string>
 
 </resources>
