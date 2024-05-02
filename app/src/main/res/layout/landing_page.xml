@@ -20,23 +20,25 @@
 
     <Button
         android:id="@+id/new_entry"
-        android:layout_width="132dp"
-        android:layout_height="78dp"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="204dp"
         android:onClick="toNewChunk"
         android:text="@string/add_new_button"
+        app:icon="@drawable/baseline_add_circle_outline_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/view_history"
-        android:layout_width="132dp"
-        android:layout_height="78dp"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="204dp"
         android:onClick="toSleepList"
         android:text="@string/history"
+        app:icon="@drawable/baseline_calendar_month_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -51,7 +53,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/drmctchr" />
+        app:srcCompat="@drawable/drmctchr"
+        android:contentDescription="@string/dreamcatcher_logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,7 @@ import android.widget.ImageView
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import java.util.Calendar
 
 
 class AddSleep : ToolbarBase() {
@@ -41,6 +42,7 @@ class AddSleep : ToolbarBase() {
         val minuteTime = findViewById<EditText>(R.id.getMins)
         val db = ChunkDatabase(this);
         saveButton.isEnabled = false
+        var dreamDateMillis = dreamDate.date
 
         //check minutes is set and <60
         minuteTime.addTextChangedListener(object : TextWatcher {
@@ -70,10 +72,16 @@ class AddSleep : ToolbarBase() {
             }
         })
 
-        //redirect to home screen
+
         fun backToHome(view : View){
             val newIntent = Intent(this,LandingPage::class.java);
             startActivity(newIntent);
+        }
+
+        dreamDate.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month, dayOfMonth)
+            dreamDateMillis = calendar.timeInMillis
         }
 
         //save the data
@@ -87,7 +95,6 @@ class AddSleep : ToolbarBase() {
             if (minuteTime.text.isNotEmpty()){
                 chunkTime += (parseInt(minuteTime.text.toString()))
             }
-            val dreamDateMillis = dreamDate.date
 
             //check if image exists, if yes then save
             if (dreamImage != null){
@@ -111,11 +118,7 @@ class AddSleep : ToolbarBase() {
             startActivityForResult(cameraIntent, 1)
         }
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.toolbar_menu, menu)
-        return true
-    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

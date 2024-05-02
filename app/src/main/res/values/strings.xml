@@ -19,14 +19,14 @@
     <string name="edit">Edit</string>
     <string name="_12_12_2012">12-12-2012</string>
     <string name="date">date</string>
-    <string name="sleep_duration">Sleep Duration</string>
+    <string name="sleep_duration">Sleep Duration:</string>
     <string name="_1">1</string>
     <string name="dream_description">Dream Description:</string>
     <string name="profile">Profile</string>
     <string name="share">Share</string>
-    <string name="copy_to_clipboard">copy to clipboard</string>
+    <string name="copy_to_clipboard">Copy JSON</string>
     <string name="take_photo">take photo</string>
-    <string name="interpret_your_dream">Interpret your dream</string>
+    <string name="interpret_your_dream">Interpret Dream</string>
     <string name="change_username">Change Username</string>
     <string name="blank_date">XXXX-XX-XX</string>
     <string name="username">username</string>
@@ -36,5 +36,9 @@
     <string name="date_colon">Date:</string>
     <string name="sleep_image">Sleep Image</string>
     <string name="sleep_time_icon">sleep time icon</string>
+    <string name="your_sleep_details">Your Sleep Details</string>
+    <string name="mins">Mins:</string>
+    <string name="photo">Photo:</string>
+    <string name="dreamcatcher_logo">Dreamcatcher Logo</string>
 
 </resources>

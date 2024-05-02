@@ -49,9 +49,7 @@ class ViewSleep : ToolbarBase() {
         val date = findViewById<TextView>(R.id.date_text_view)
         val copyButton = findViewById<Button>(R.id.copy_JSON)
         val imageView = findViewById<ImageView>(R.id.image)
-        val webView = findViewById<WebView>(R.id.dream_interpreter)
         val dreamDateMillis = sleepObj?.date
-        webView.webViewClient = WebViewClient()
 
         if (sleepObj != null) {
             var hourval = sleepObj.sleepTime / 60
